@@ -128,3 +128,39 @@ function get_plant_data(object $pdo, int $plant_id){
     $results = $stmt->fetch(\PDO::FETCH_ASSOC);
     return $results;
 }
+
+function get_user_id_from_image_id($pdo, $image_id){
+    $query = "SELECT user_id FROM images WHERE id = :id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":id", $image_id);
+    $stmt->execute();
+    $results = $stmt->fetch(\PDO::FETCH_ASSOC);
+    return $results["user_id"];
+}
+
+function get_user_id_from_note_id($pdo, $note_id){
+    $query = "SELECT user_id FROM notes WHERE id = :id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":id", $note_id);
+    $stmt->execute();
+    $results = $stmt->fetch(\PDO::FETCH_ASSOC);
+    return $results["user_id"];
+}
+
+function get_user_id_from_plant_id($pdo, $plant_id){
+    $query = "SELECT user_id FROM plants WHERE id = :id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":id", $plant_id);
+    $stmt->execute();
+    $results = $stmt->fetch(\PDO::FETCH_ASSOC);
+    return $results["user_id"];
+}
+
+function get_username_from_user_id($pdo, $user_id){
+    $query = "SELECT username FROM users WHERE id = :id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":id", $user_id);
+    $stmt->execute();
+    $results = $stmt->fetch(\PDO::FETCH_ASSOC);
+    return $results["username"];    
+}

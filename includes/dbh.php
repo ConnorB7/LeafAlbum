@@ -1,9 +1,9 @@
 <?php
 
-$host = 'vuxmysql11';
+$host = 'localhost';
 $dbname = 'leafalbum';
-$dbusername = 'c';
-$dbpassword = 'Wve123!!';
+$dbusername = 'root';
+$dbpassword = '';
 
 try {
 	$pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbusername, $dbpassword);
