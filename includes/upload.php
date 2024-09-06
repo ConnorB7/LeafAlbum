@@ -11,8 +11,7 @@ require_once 'upload_controller.php';
 
 if (isset($_POST['submit'])){
     try{
-
-            $plant_title = $_POST["plant_title"];
+        $plant_title = $_POST["plant_title"];
         
         $title = $_POST["title"];
         $taken_at = $_POST["taken_at"];

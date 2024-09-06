@@ -1,8 +1,9 @@
 <?php
 require_once 'includes/config_session.php';
-require_once 'includes/login_view.php';
 require_once 'includes/nav_bar_view.php';
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,25 +16,18 @@ require_once 'includes/nav_bar_view.php';
 	<title>LeafAlbum</title>
 	<script src="main.js"></script>
 </head>
-<?php
 
-require_once 'includes/dbh.php';
-require_once 'includes/config_session.php';
-require_once 'includes/newsfeed_view.php';
-require_once 'includes/newsfeed_model.php';
-
-?>
 <body>
 	<?php
 	if(isset($_SESSION["user_id"])){
-		display_nav_bar();
-		?>
-		<div class="column2">
-		<?php
-		get_newsfeed($pdo, $_SESSION['user_id']);
-		?>
-		<div>
-		<?php
+	display_nav_bar();
+	?>
+	<div class="column2">
+		<a href="upload_image_page.php" class="img"><img src="images/upload_image.png"></a>
+		<a href="upload_note_page.php" class="img"><img src="images/upload_note.png"></a>
+		<a href="upload_plant_page.php" class="img"><img src="images/upload_plant.png"></a>
+	</div>
+	<?php
 	} else 
 	{
 		header("location: index.php");

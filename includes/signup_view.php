@@ -22,20 +22,44 @@ function check_signup_errors(): void
 
 function signup_inputs(): void
 {
-
+		?>
+		<br>
+		<h4>
+			Signup
+		</h4>
+		<br>
+		<h5>
+			Input a username:
+		</h5>
+		<?php
 		if(isset($_SESSION["signup_data"]["username"]) &&
-		!isset($_SESSION["errors_signup"]["username_taken"])) {
+		!isset($_SESSION["errors_signup"]["username_taken"])) 
+		{
 			echo '<input type="text" name="username" 
-			placeholder="username" value="'
-			. $_SESSION["signup_data"]["username"] . '">';
+			placeholder="username" value="'. 
+			$_SESSION["signup_data"]["username"] . 
+			'">';
 		}
 		else{
 			echo '<input type="text" name="username" 
 			placeholder="username">';
 		}
-		
-		echo '<input type="password" name="password" placeholder="password">';
-		
+		?>
+		<br>
+		<br>
+		<h5>
+			Input a password:
+		</h5>
+		<?php
+		echo '<input type="password" name="password" 
+		placeholder="password">';
+		?>
+		<br>
+		<br>
+		<h5>
+			Input an email:
+		</h5>
+		<?php
 		if(isset($_SESSION["signup_data"]["email"]) &&
 		!isset($_SESSION["errors_signup"]["email_taken"])) {
 			echo '<input type="text" name="email" 
@@ -46,6 +70,12 @@ function signup_inputs(): void
 			echo '<input type="text" name="email" 
 			placeholder="email">';
 		}
-		
-		echo '<input type="password" name="signup_code" placeholder="signup code">';
+		?>
+		<br>
+		<br>
+		<h5>
+			Input a valid signup code:
+		</h5>
+		<?php
+		echo '<input type="password" name="signup_code" placeholder="signup code"><br><br>';
 }

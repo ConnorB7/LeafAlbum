@@ -31,14 +31,16 @@ require_once 'includes/nav_bar_view.php';
 	else if(isset($_SESSION["user_id"])){
 		display_nav_bar();
 		?>
-		<h1>Change your password</h1>
-		<a href="password_change_page.php">change password</a>
-
-		<h1>Your account privacy setting: <?php echo get_privacy_status($pdo, $_SESSION["user_id"]) ?>
+		<div class="uploads">
+		<br>
+		<h3>Change your password</h3>
+		<a href="password_change_page.php" class="img"><img src="images/change_password.png"></a>
+		<br>
+		<h3>Your account privacy setting: <?php echo get_privacy_status($pdo, $_SESSION["user_id"]) ?>
 			<?php if(get_privacy_status($pdo, $_SESSION["user_id"]) === "private") 
 			{?>
 				<form action="includes/account_privacy_setting.php?setting=public" method="post">		
-					<button>Set to public</button>
+					<input type="image" src="images/set_to_public.png" alt="Submit">
 				</form>
 			<?php
 			}
@@ -46,11 +48,12 @@ require_once 'includes/nav_bar_view.php';
 			{
 				?>
 				<form action="includes/account_privacy_setting.php?setting=private" method="post">		
-					<button>Set to private</button>
+					<input type="image" src="images/set_to_private.png" alt="Submit">
 				</form>
 				<?php
 			} ?>
 		</form>
+		</div>
 		<?php
 	}
 	else{

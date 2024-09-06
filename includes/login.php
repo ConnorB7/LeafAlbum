@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 			if($errors){
 				$_SESSION["errors_login"] = $errors;
 				
-				header("location: ../index.php");
+				header("location: ../login_page.php");
 				die();
 			}
 			$new_session_id = session_create_id();
