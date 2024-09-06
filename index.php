@@ -23,13 +23,27 @@ require_once 'includes/nav_bar_view.php';
 	<?php
 	display_nav_bar();
 	?>
-	<h3>
-		<?php
-			output_username();
-		?>
-	</h3>
-	<p>
+	<div class="uploads">
+		<h4>
 		Welcome to Leaf Album!
-	</p>
+		</h4>
+		<br>
+		<p>
+		LeafAlbum is a social media platform designed specifically for gardening enthusiasts. 
+		<br>
+		<br>
+		Users can upload and share photos of their plants, whether they're showcasing a blooming flower, 
+		a thriving vegetable garden, or a unique plant species. 
+		<br>
+		<br>
+		The site allows gardeners to make detailed notes on each plant, documenting care routines, growth 
+		progress, and any other relevant observations. 
+		<br>
+		<br>
+		By following other users, you can stay updated with their gardening journeys, draw inspiration from 
+		their posts, and engage in meaningful discussions through comments. 
+		<br>
+		<br>
+</div>
 </body>
 

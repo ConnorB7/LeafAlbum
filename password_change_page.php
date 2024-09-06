@@ -19,19 +19,34 @@ require_once 'includes/nav_bar_view.php';
 <body>
     <?php
     if(isset($_SESSION["user_id"])){ 
-		    display_nav_bar();
-        echo "You are currently logged in as <b>" . $_SESSION["user_username"] . "</b>"; ?>
-        <h1>Change Password</h1>
+		display_nav_bar();
+        ?>
+        <h3>Change Password</h3>
+        <br>
+        <?php echo "You are currently logged in as <b>" . $_SESSION["user_username"] . "</b>"; ?>
         <form action="includes/password_change.php" method="post">
+            <br>
+			<label for="upload_info">Input your current password:</label>
+			<br>
             <label>
                 <input type="password" name="current_password" placeholder="current password">
             </label>
+            <br>
+            <br>
+			<label for="upload_info">Input your new password:</label>
+			<br>            
             <label>
                 <input type="password" name="new_password_1" placeholder="new password">
             </label>
+            <br>
+            <br>
+			<label for="upload_info">Input your new password again:</label>
+			<br>
             <label>
                 <input type="password" name="new_password_2" placeholder="new password">
             </label>
+            <br>
+            <br>
             <button>submit</button>
         </form>
         <?php

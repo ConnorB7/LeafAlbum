@@ -20,7 +20,9 @@ require_once 'includes/nav_bar_view.php';
     <?php
     display_nav_bar();
     if(!isset($_SESSION["user_id"])){ ?>
-        <h1>Login</h1>
+        <div class="uploads">
+        <h4>Login</h4>
+        <br>
         <form action="includes/login.php" method="post">
             <label>
                 <input type="text" name="username" placeholder="username">
@@ -30,7 +32,6 @@ require_once 'includes/nav_bar_view.php';
             </label>
             <button>Login</button>
         </form>
-				<br>
         <?php 
         if(isset($_GET["login"]) && $_GET["login"] === "success"){
             header("location: profile.php");
@@ -38,8 +39,10 @@ require_once 'includes/nav_bar_view.php';
 
         check_login_errors();
         ?>
-						<h1>Guest Account Login</h1>
-						<form action="includes/login.php" method="post">
+        <br>
+        <h4>Guest Account Login</h4>
+        <br>
+        <form action="includes/login.php" method="post">
             <label>
                 <input type="text" name="username" placeholder="username" value="Guest">
             </label>
@@ -48,13 +51,14 @@ require_once 'includes/nav_bar_view.php';
             </label>
             <button>Login</button>
         </form>
-				<br>
-        <a href="signup_page.php">Account Signup</a> <?php
+		<br>
+        <a href="signup_page.php"><h4>Account Signup</h4></a><br> <?php
     } else {
-        echo "You are currently logged in as <b>" . $_SESSION["user_username"] . "</b>";?>
+        echo "<div class='uploads'>You are currently logged in as <b>" . $_SESSION["user_username"] . "</b>";?>
         <form action="includes/logout.php" method="post">
-        <button>logout</button>
+            <button>logout</button>
         </form>
         <?php
     } ?>
+    </div>
 </body>

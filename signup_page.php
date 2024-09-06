@@ -22,12 +22,11 @@ require_once 'includes/nav_bar_view.php';
     if(!isset($_SESSION["user_id"]))
     {   
         ?>
-        <h1>Signup</h1>
         <form action="includes/signup.php" method="post">
-        <?php
-        signup_inputs();
-        ?>
-        <button>Signup</button>
+            <?php
+            signup_inputs();
+            ?>
+            <input type="image" src="images/signup.png" alt="Submit">
         </form>
         <?php
         if(isset($_GET["signup"]) && $_GET["signup"] === "success"){
