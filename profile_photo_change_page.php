@@ -1,7 +1,10 @@
 <?php
 require_once 'includes/config_session.php';
+require_once 'includes/dbh.php';
 require_once 'includes/nav_bar_view.php';
-
+require_once 'includes/upload_view.php';
+require_once 'includes/newsfeed_view.php';
+require_once 'includes/newsfeed_model.php';
 ?>
 
 
@@ -38,10 +41,13 @@ require_once 'includes/nav_bar_view.php';
 		<br>
 		<a href="account_settings_page.php"><h2>Account Settings</h2></a>
 		</div>
-		<div class="column2">
-			<a href="upload_image_page.php" class="img"><img src="images/upload_image.png"></a>
-			<a href="upload_note_page.php" class="img"><img src="images/upload_note.png"></a>
-			<a href="upload_plant_page.php" class="img"><img src="images/upload_plant.png"></a>
+		<div class="uploads">
+        <br>
+		<h3>Your current profile photo:</h3> 
+		<br>
+        <?php display_profile_image($pdo, $_SESSION["user_id"]); ?><br><br><br><br>
+        <h3>Click on one of your images below to set it as your profile photo.</h3>
+        <?php display_images_for_profile_photo($pdo, $_SESSION["user_id"]) ?>
 		</div>
 		<?php
 	} else 

@@ -2,6 +2,12 @@
 require_once 'includes/config_session.php';
 require_once 'includes/login_view.php';
 require_once 'includes/nav_bar_view.php';
+require_once 'includes/like_view.php';
+require_once 'includes/like_controller.php';
+require_once 'includes/like_model.php';
+require_once 'includes/comment_view.php';
+require_once 'includes/comment_model.php';
+require_once 'includes/comment_controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +36,7 @@ require_once 'includes/newsfeed_model.php';
 		?>
 		<div class="column2">
 		<?php
-		get_newsfeed($pdo, $_SESSION['user_id']);
+		get_following_newsfeed($pdo, $_SESSION['user_id']);
 		?>
 		<div>
 		<?php

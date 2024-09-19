@@ -9,6 +9,14 @@ require_once 'includes/newsfeed_view.php';
 require_once 'includes/newsfeed_model.php';
 require_once 'includes/dbh.php';
 require_once 'includes/nav_bar_view.php';
+require_once 'includes/signup_controller.php';
+require_once 'includes/signup_model.php';
+require_once 'includes/like_view.php';
+require_once 'includes/like_controller.php';
+require_once 'includes/like_model.php';
+require_once 'includes/comment_view.php';
+require_once 'includes/comment_model.php';
+require_once 'includes/comment_controller.php';
 
 ?>
 
@@ -26,46 +34,49 @@ require_once 'includes/nav_bar_view.php';
 
 <body>
 	<?php
-	if(isset($_GET["profile"]) && ($_GET["profile"] === $_SESSION["user_username"])){
-		header("location: profile.php");
-	}
-	else if(isset($_SESSION["user_id"]))
-	{
-		if(!isset($_GET["account"]) && !isset($_GET['profile'])){
-			header("location: profile.php?account=" . $_SESSION["user_username"]);
+	if(isset($_SESSION["user_id"])){
+		if(!isset($_GET["profile"]) || 
+		$_GET["profile"] == null || 
+		!($_GET["profile"] === $_SESSION["user_username"] || is_username_taken($pdo, $_GET["profile"])))
+		{
+			header("location: profile.php?profile=" . $_SESSION["user_username"]);
 		}
 		display_nav_bar();
-		if(isset($_GET["profile"]))
+		if($_SESSION["user_username"] === "guest"){
+			echo "<div class='column2'>
+			<article class='main-container'>
+			<p>Guest Accounts cannot upload to the website. 
+			<br>They may only view the content of other accounts.
+			<br>Go to the newsfeed to see posts.</p>
+			</article>
+			</div>";
+		}
+		else if(!(strtolower($_GET["profile"]) === $_SESSION["user_username"]))
 		{
 			?>
 			<div class="column1">
+				<br><br><br><br>
+				<h1><?php echo htmlspecialchars($_GET["profile"]); ?></h1>
+				<br><br>
+				<?php echo '<a href="post_page.php?image=all&profile=' . $_GET["profile"] . '" ><h2>Images</h2></a>
 				<br>
+				<a href="post_page.php?note=all&profile=' . $_GET["profile"] . '"><h2>Notes</h2></a>
 				<br>
-				<br>
-				<br>
-				<h1><?php echo $_GET["profile"]; ?></h1>
-				<br>
-				<br>
-				<?php echo '<a href="images_page.php?profile=' . $_GET["profile"] . '" ><h2>Images</h2></a>
-				<br>
-				<a href="notes_page.php?profile=' . $_GET["profile"] . '"><h2>Notes</h2></a>
-				<br>
-				<a href="plants_page.php?profile=' . $_GET["profile"] . '" ><h2>Plants</h2></a>
-				<br>
-				<a href="account_settings_page.php"><h2>Account Settings</h2></a>
+				<a href="post_page.php?plant=all&profile=' . $_GET["profile"] . '" ><h2>Plants</h2></a>
 				<br>'; ?>
 			</div>
 			<div class="column2">
 			<?php
-			if(follow_status($pdo, $_GET["profile"], $_SESSION["user_id"]) === "following")
+			if(follow_status($pdo, get_user_id_from_username($pdo, $_GET["profile"]), $_SESSION["user_id"]) === "following")
 			{
 				echo '<form action="includes/unfollow.php?profile=' 
-				. $_GET["profile"] . '" method="POST" ENCTYPE="multipart/form-data">
+				. htmlspecialchars($_GET["profile"]) . '" method="POST" ENCTYPE="multipart/form-data">
 				<input type="image" src="images/unfollow.png" alt="Submit">
 				</form>';
+				display_profile_image($pdo, $_SESSION["user_id"]);
 				get_newsfeed($pdo, $_SESSION["user_id"]);
 			}
-			elseif(follow_status($pdo, $_GET["profile"], $_SESSION["user_id"]) === "pending")
+			elseif(follow_status($pdo, get_user_id_from_username($pdo, $_GET["profile"]), $_SESSION["user_id"]) === "pending")
 			{
 					if(!is_private($pdo, $_GET["profile"]))
 					{
@@ -73,6 +84,7 @@ require_once 'includes/nav_bar_view.php';
 						. $_GET["profile"] . '" method="POST" ENCTYPE="multipart/form-data">
 						<input type="image" src="images/pending.png" alt="Submit">
 						</form>';
+						display_profile_image($pdo, $_SESSION["user_id"]);
 						get_newsfeed($pdo, $_SESSION["user_id"]);
 					}
 					else
@@ -84,7 +96,7 @@ require_once 'includes/nav_bar_view.php';
 						</form>';
 					}
 			}
-			elseif(follow_status($pdo, $_GET["profile"], $_SESSION["user_id"]) === "not_following")
+			elseif(follow_status($pdo, get_user_id_from_username($pdo, $_GET["profile"]), $_SESSION["user_id"]) === "not_following")
 			{
 					if(!is_private($pdo, $_GET["profile"]))
 					{
@@ -92,6 +104,7 @@ require_once 'includes/nav_bar_view.php';
 						. $_GET["profile"] . '" method="POST" ENCTYPE="multipart/form-data">
 						<input type="image" src="images/follow.png" alt="Submit">
 						</form>';
+						display_profile_image($pdo, $_SESSION["user_id"]);
 						get_newsfeed($pdo, $_SESSION["user_id"]);
 					}
 					else
@@ -106,33 +119,28 @@ require_once 'includes/nav_bar_view.php';
 			</div>
 			<?php
 		}
-		else if($_SESSION["user_username"] === "Guest"){
-			echo "<p>Guest Accounts cannot upload to the website. 
-			<br>They may only view the content of other accounts.
-			<br>Go to the newsfeed to see posts.</p>";
-		}
 		else 
 		{
 			?>
 			<div class="column1">
-			<br>
-			<br>
-			<br>
-			<br>
+			<br><br><br><br>
 			<h1><?php echo $_SESSION["user_username"] ?></h1>
+			<br><br><?php
+			echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&image=all">'; ?><h2>Images</h2></a>
+			<br><?php
+			echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&note=all">'; ?><h2>Notes</h2></a>
+			<br><?php
+			echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&plant=all">'; ?><h2>Plants</h2></a>
 			<br>
+            <a href="follower_page.php"><h2>Followers</h2></a>
 			<br>
-			<a href="images_page.php"><h2>Images</h2></a>
-			<br>
-			<a href="notes_page.php"><h2>Notes</h2></a>
-			<br>
-			<a href="plants_page.php"><h2>Plants</h2></a>
+            <a href="following_page.php"><h2>Followings</h2></a>
 			<br>
 			<a href="account_settings_page.php"><h2>Account Settings</h2></a>
-			<br>
 			</div>
 			<div class="column2">
 				<?php
+				display_profile_image($pdo, $_SESSION["user_id"]);
 				get_newsfeed($pdo, $_SESSION["user_id"]);
 				?>
 			</div>
@@ -141,7 +149,7 @@ require_once 'includes/nav_bar_view.php';
 	}            
 	else 
 	{
-		header("location: index.php");
+		header("location: login_page.php");
 	} ?>
 	<br>
 </body>

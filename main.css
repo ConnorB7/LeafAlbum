@@ -32,7 +32,7 @@ div.uploads{
    margin-left: auto;
    margin-right: auto;
    background-color: #f7f7f7;  
-   width: 40%; 
+   width: 50%; 
 } 
 div{
     height: auto;
@@ -59,7 +59,7 @@ div.column{
 .img {
    max-width: 100%; 
    max-height: 100%; 
-   display: block; 
+   display: inline; 
 }
 /* Header styles */
    
@@ -90,6 +90,32 @@ header.main {
   div.column1{
    display: none;
   }
+  .main-container {
+   background: #D0D6B3;
+   border: none;
+   border: 5px solid white;
+   margin: 0px;
+   padding: 0%;
+ }
+ .main-container h4{
+   display: inline;
+ }
+ .all-articles{
+   width: 100%;
+ }
+.main-container > h5{
+   margin: 0px 0px 0px 0px;
+}
+.main-container > h5{
+   font-size: 16px;
+   background-color: #D0D6B3;
+   color: white;
+   float: right;
+   display: inline;
+   margin: 18px 10px 10px 10px;
+   text-decoration: none;
+   font-weight: bold;
+}
 }
 @media screen and (min-width: 1050px) {
   div.navButton {
@@ -101,6 +127,31 @@ header.main {
   div.column1{
    display: inline;
   }
+  .main-container {
+   background: #D0D6B3;
+   border: 14px solid white;
+   margin: 25px;
+   padding: 0%;
+ }
+ .main-container h4{
+   display: block;
+ }
+ .all-articles{
+   width: 75%;
+ }
+.main-container > h5{
+   margin: 10px 10px 0px 10px;
+}
+.main-container > h5{
+   font-size: 26px;
+   background-color: #D0D6B3;
+   color: white;
+   float: right;
+   display: inline;
+   text-align: center;
+   text-decoration: none;
+   font-weight: bold;
+}
 }
 div.navButton {
 	right: 10%;
@@ -243,23 +294,72 @@ nav.horizontal ul li a:hover {
 
 /* article styles */
 .all-articles {
-   width: 75%;
    margin: 0;
    padding: 0px;
    background-color: #d0d6b3;
    margin-left: auto;
    margin-right: auto;
 }
-.main-container {
-  background: white;
-  margin: 25px;
-  padding: 0%;
+.newsfeed_link {
+   background-color: #D0D6B3;
+   color: white;
+   border: 2px solid white;
+   padding: 15px 15px;
 }
-.main-container > h4, h5, p {
-   margin: 0px;
-   font-size: 90%;
- }
+.main-container a:visited {
+   color: white;
+}
+.main-container a:hover {
+   color: #143109;
+}
+.main-container > h4{
+   font-size: 26px;
+   background-color: #D0D6B3;
+   color: white;
+   float: left;
+   text-align: center;
+   text-decoration: none;
+   clear: left;
+   margin: 30px 10px 0px 10px;
+   font-weight: bold;
+}
+.main-container > h6{
+   font-size: 20px;
+   background-color: #D0D6B3;
+   color: white;
+   display: inline;
+   float: left;
+   margin: 0px 0px 10px 10px;
+   text-align: center;
+   text-decoration: none;
+   font-weight: bold;
+}
+.main-container > h3{
+   font-size: 20px;
+   background-color: #D0D6B3;
+   color: white;
+   float: right;
+   display: inline;
+   text-align: center;
+   text-decoration: none;
+   font-weight: bold;
+   margin: 0px 10px 0px 0px;
+}
+.main-container > p {
+   font-size: 18px;
+   color: white;
+   max-width: 100%; 
+   max-height: 100%; 
+   clear: right;
+}
 
+.main-container > p > a {
+   font-size: 18px;
+   color: white;
+   max-width: 100%; 
+   max-height: 100%; 
+   clear: right;
+}
 h1 {
    color: #f7f7f7;
    font-size: 32px;
@@ -282,15 +382,6 @@ h3 {
    font-size: 32px;
    font-weight: bold;
 }
-h4 {
-   color: #AAAE7F;
-   font-size: 32px;
-}
-h5 {
-   color: #AAAE7F;
-   font-size: 24px;
-}
-
 
 article ul {
    margin: 10px 0px 10px 20px;
@@ -326,6 +417,23 @@ img.limg {
 	object-fit: cover;
 	
 }
+.button {
+   border: none;
+   color: white;
+   padding: 0px 15px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 35px;
+   margin: 4px 2px;
+   cursor: pointer;
+ }
+ 
+
+textarea {
+   width: 90%;
+   resize: none;
+ }
 
 /* Page footer styles */
 

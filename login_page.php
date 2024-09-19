@@ -30,6 +30,7 @@ require_once 'includes/nav_bar_view.php';
             <label>
                 <input type="password" name="password" placeholder="password">
             </label>
+            <br><br>
             <button>Login</button>
         </form>
         <?php 
@@ -43,16 +44,10 @@ require_once 'includes/nav_bar_view.php';
         <h4>Guest Account Login</h4>
         <br>
         <form action="includes/login.php" method="post">
-            <label>
-                <input type="text" name="username" placeholder="username" value="Guest">
-            </label>
-            <label>
-                <input type="password" name="password" placeholder="password" value="Guest123">
-            </label>
-            <button>Login</button>
+            <button>Guest Login</button>
         </form>
 		<br>
-        <a href="signup_page.php"><h4>Account Signup</h4></a><br> <?php
+        <a href="signup_page.php"><h4>Account Signup</h4></a><br><?php
     } else {
         echo "<div class='uploads'>You are currently logged in as <b>" . $_SESSION["user_username"] . "</b>";?>
         <form action="includes/logout.php" method="post">
