@@ -21,6 +21,23 @@ require_once 'includes/nav_bar_view.php';
     if(isset($_SESSION["user_id"])){ 
 		display_nav_bar();
         ?>
+		<div class="column1">
+		<br><br><br><br>
+		<h1><?php echo $_SESSION["user_username"] ?></h1>
+		<br><br><?php
+		echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&image=all">'; ?><h2>Images</h2></a>
+		<br><?php
+		echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&note=all">'; ?><h2>Notes</h2></a>
+		<br><?php
+		echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&plant=all">'; ?><h2>Plants</h2></a>
+		<br>
+		<a href="follower_page.php"><h2>Followers</h2></a>
+		<br>
+		<a href="following_page.php"><h2>Followings</h2></a>
+		<br>
+		<a href="account_settings_page.php"><h2>Account Settings</h2></a>
+		</div>
+        <div class="uploads">;
         <h3>Change Password</h3>
         <br>
         <?php echo "You are currently logged in as <b>" . $_SESSION["user_username"] . "</b>"; ?>
@@ -51,6 +68,9 @@ require_once 'includes/nav_bar_view.php';
         </form>
         <?php
         check_password_change_errors();
+        ?>
+        </div>
+        <?php
     }
     else 
     {

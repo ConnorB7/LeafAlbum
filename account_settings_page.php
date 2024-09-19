@@ -31,12 +31,29 @@ require_once 'includes/nav_bar_view.php';
 	else if(isset($_SESSION["user_id"])){
 		display_nav_bar();
 		?>
+		<div class="column1">
+		<br><br><br><br>
+		<h1><?php echo $_SESSION["user_username"] ?></h1>
+		<br><br><?php
+		echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&image=all">'; ?><h2>Images</h2></a>
+		<br><?php
+		echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&note=all">'; ?><h2>Notes</h2></a>
+		<br><?php
+		echo '<a href="post_page.php?profile=' . $_SESSION["user_username"] . '&plant=all">'; ?><h2>Plants</h2></a>
+		<br>
+		<a href="follower_page.php"><h2>Followers</h2></a>
+		<br>
+		<a href="following_page.php"><h2>Followings</h2></a>
+		<br>
+		<a href="account_settings_page.php"><h2>Account Settings</h2></a>
+		</div>
 		<div class="uploads">
 		<br>
 		<h3>Change your password</h3>
-		<a href="password_change_page.php" class="img"><img src="images/change_password.png"></a>
 		<br>
-		<h3>Your account privacy setting: <?php echo get_privacy_status($pdo, $_SESSION["user_id"]) ?>
+		<a href="password_change_page.php" class="img"><img src="images/change_password.png"></a>
+		<br><br>
+		<h3>Your account privacy setting: <?php echo get_privacy_status($pdo, $_SESSION["user_id"]) ?></h3><br>
 			<?php if(get_privacy_status($pdo, $_SESSION["user_id"]) === "private") 
 			{?>
 				<form action="includes/account_privacy_setting.php?setting=public" method="post">		
@@ -53,6 +70,12 @@ require_once 'includes/nav_bar_view.php';
 				<?php
 			} ?>
 		</form>
+		<br>
+		<h3>Change your profile photo</h3>
+		<br>
+		<a href="profile_photo_change_page.php" class="img"><img src="images/set_profile_photo.png"></a>
+		<br>
+		<br>
 		</div>
 		<?php
 	}

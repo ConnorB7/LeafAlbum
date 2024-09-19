@@ -22,6 +22,7 @@ require_once 'includes/nav_bar_view.php';
     if(!isset($_SESSION["user_id"]))
     {   
         ?>
+        <div class="uploads">
         <form action="includes/signup.php" method="post">
             <?php
             signup_inputs();
@@ -33,6 +34,9 @@ require_once 'includes/nav_bar_view.php';
             header("location: profile.php");
         }
         check_signup_errors();
+        ?>
+        </div>
+        <?php
     } 
     else 
     {

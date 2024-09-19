@@ -1,7 +1,11 @@
 <?php
+require_once 'includes/dbh.php';
 require_once 'includes/config_session.php';
 require_once 'includes/nav_bar_view.php';
-
+require_once 'includes/newsfeed_controller.php';
+require_once 'includes/newsfeed_model.php';
+require_once 'includes/followers_view.php';
+require_once 'includes/followers_model.php';
 ?>
 
 
@@ -38,11 +42,26 @@ require_once 'includes/nav_bar_view.php';
 		<br>
 		<a href="account_settings_page.php"><h2>Account Settings</h2></a>
 		</div>
-		<div class="column2">
-			<a href="upload_image_page.php" class="img"><img src="images/upload_image.png"></a>
-			<a href="upload_note_page.php" class="img"><img src="images/upload_note.png"></a>
-			<a href="upload_plant_page.php" class="img"><img src="images/upload_plant.png"></a>
-		</div>
+    <div class="uploads">
+        <br>
+        <h3>
+            Requests to follow your profile
+        </h3>
+        <br>
+        <?php
+        display_pending_followers($pdo, $_SESSION["user_id"]);
+        ?>
+	</div>
+    <div class="uploads">
+        <br>
+        <h3>
+            Profiles following you
+        </h3>
+        <br>
+        <?php
+        display_followers($pdo, $_SESSION["user_id"]);
+        ?>
+	</div>
 		<?php
 	} else 
 	{
