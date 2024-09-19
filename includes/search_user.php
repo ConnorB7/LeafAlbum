@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                 die();
             }
 			else{
-                header("location: ../search_page.php");
+                header("location: ../search_page.php?searched=" . $username);
 
 			
 			$pdo = null;

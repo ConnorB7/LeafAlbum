@@ -11,7 +11,7 @@ function set_privacy_setting(object $pdo, string $setting, string $user_id){
     }
 }
 
-function get_privacy_status(object $pdo, string $user_id){
+function get_privacy_status(object $pdo, $user_id){
     $result = retrieve_privacy_setting($pdo, $user_id);
     if($result["private"] === 0){
         return "public";

@@ -21,7 +21,7 @@ $plant_title, string $note, string $user_date){
 	$stmt->bindParam(":user_id", $user_id);
 	$stmt->bindParam(":title", $title);
 	$stmt->bindParam(":plant_id", $plant_id);
-  $stmt->bindParam(":note", $note);
+  	$stmt->bindParam(":note", $note);
 
 	$stmt->execute();
 
