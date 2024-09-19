@@ -1,10 +1,10 @@
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
-  if (currenScrollPos < 100px) {
+  if (currenScrollPos < 100) {
     document.getElementById("navbar").style.top = "0";
   } 
-  elseif (prevScrollpos > currentScrollPos) {
+  else if (prevScrollpos > currentScrollPos) {
     document.getElementById("navbar").style.top = "0";
   } 
   else {
